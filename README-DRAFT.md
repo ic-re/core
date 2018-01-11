@@ -1,7 +1,7 @@
 [ Concept layout and readme still a WIP. Further clarification, diagrams, are required. ]
 
-                                    ICRE
-                Integrated Circuit Reverse Engineering Framework
+# ICRE-CORE
+### Integrated Circuit Reverse Engineering Framework
 
 ICRE is an open source silicon auto-analysis framework. If you are a software
 reverse engineer, then ICRE is the radare2 + GDB of silicon. ICRE can be used
@@ -19,9 +19,8 @@ up the reversing process.
 
 If this sounds interesting to you, then join us at #icre on freenode.
 
--------------------------------------------------------------------------------
-
-                                Core Modules
+Core Modules
+------
 
   - Workflow UI
 
@@ -43,10 +42,8 @@ If this sounds interesting to you, then join us at #icre on freenode.
 
   - 
 
-
--------------------------------------------------------------------------------
-
-                          Principles of development
+Principles of development
+------
 
   - Modularity
 
@@ -97,11 +94,5 @@ If this sounds interesting to you, then join us at #icre on freenode.
     are in need of image processing and netlist extraction frontends. ICRE should
     essentially connect various research together and fill in the gaps.
 
--------------------------------------------------------------------------------
-
-                               Hard problems
-
-
-
-
--------------------------------------------------------------------------------
+Hard problems
+------
