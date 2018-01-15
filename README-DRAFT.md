@@ -20,79 +20,79 @@ up the reversing process.
 If this sounds interesting to you, then join us at #icre on freenode.
 
 Core Modules
-------
+------------
 
-  - Workflow UI
+All modules are standalone libraries, which follow a carefully documented API
+specification. Each of these modules should be daemonizable, API calls and
+arguments should be serializable for network transport.
+
+  - ICRE-ui
 
     KiCAD-like workflow UI [what is a KiCAD-like workflow?]. Needs to be
     intuitive to use via command line as well as graphically.
 
-  - Imaging
+  - ICRE-ui-control
 
-    - Microscope control interface [what is this?]
+    Live control interface for ICRE-robot. Here, it is implemented as a pygame
+    interface, with submodules for interacting with joysticks.
+
+  - ICRE-script
+
+    Scriptable control interface for ICRE components. 
+
+  - ICRE-robot
+
+    - Control interface for microscope (X, Y, Z, A, B, T),
+      Laser (X, Y, Power),
+      Motorized microprobe / micropositioner (X, Y, Z).
+
+    - Intended to be used with ICRE-vision and ICRE-ui-control.
+
+    - Instead of ICRE-ui-control, can be issued control commands
+      directly or via the ICRE-script.
+
+    - Exposes a generic sensor interface, which is currently used to
+      keep track of stepper motor state (or query it from the stepper
+      controller, if there is one).
+
+    - Command primatives should be kept simple, in order to implement
+      ICRE-robot cheaply on a microcontroller.
+
+  - ICRE-vision
+
+    Exposes primitives to help with the chip imaging process, i.e. a stitcher,
+    some hough line stuff for making sure tiles are good quality, and so on.
+
+    Run cv models to extract useful information about the image.
+
+    [ I think it makes sense to merge ICRE-vision and ICRE-degate. ]
+
     - Image preprocessing and quality verification 
+      - This gets run against every captured tile, and trace connectivity
+        gets tested as more tiles are captured.
+
     - Stitching
 
-  - Netlist extraction
+    ( template matching based on normalized cross-correlation )
+
+  - ICRE-degate
 
     This is where the research behind degate comes in. More to be written about
     this soon. 
 
-  - Flowgraph componenet visualizer
+    Netlist to gate array
 
-  - 
+  - ICER-flowgen
 
-Principles of development
-------
+    Flowgraph componenet visualizer
 
-  - Modularity
+  - ICRE-vloggen
 
-    ICRE has to be extremely pluggable and easy to develop modules for. This is
-    due to the vastness of the project, variety of chip imaging styles, image
-    qualities, and chip types. In addition, well defined modularity enables
-    accelerated research into various processes involved without having to
-    re-invent the wheel.
+    Gate array to verilog
 
-    Core modules will go through a curation process for code quality, through
-    the remaining core principles.
+  - ICRE-qemugen
 
-    Contribution repositories can be made for experimental plugins and non-curated
-    code, to ease development and expand the project further than initially
-    intended.
+    Gate array (or verilog?) to qemu module
 
-  - Standards development, adherence, and code documentation
+  - ICRE-simulate
 
-    Because of the pool of research and image processes being used in ICRE,
-    there has to be a set of standards to help the parts connect to each other, to
-    help researchers make progress, and accelerate development of modules.
-
-    For example, it would be good to make a spec for chip imaging formats and
-    delayering information [unclear what this looks like].
-
-    All parts of ICRE must be well documented, and the documentation must
-    follow code as changes are introduced.
-
-  - Reliability
-
-    Bugs in the workflow will quickly result in a loss of interest in ICRE,
-    giving marketing power to proprietary solutions. ICRE must have a thorough test
-    suite to mitigate bugs and ease introduction of new developers.
-
-  - Build on existing research
-
-    There's already a few years worth of research and FOSS code that can be
-    reused. Adopting existing code into ICRE does not only save development time,
-    we also end up contributing improvements back to existing projects.
-
-    For example, degate already implements planar silicon netlist extraction
-    and workflows to quickly assist the image recognition process. By adopting the
-    code, making the build process more reliable, and reworking it into a library
-    framework -- we can make it easier to make improvements to the core
-    functionality of the software.
-    
-    Other projects, such as Dr. Zonenberg's netlist to verilog IR research,
-    are in need of image processing and netlist extraction frontends. ICRE should
-    essentially connect various research together and fill in the gaps.
-
-Hard problems
-------

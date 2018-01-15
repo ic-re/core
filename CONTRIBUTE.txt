@@ -1,0 +1,59 @@
+Style
+-----
+
+All core modules must have an API specification at the root of the module
+directory.
+
+
+Contribution Requirements
+-------------------------
+
+  - Modularity
+
+    ICRE has to be extremely pluggable and easy to develop modules for. This is
+    due to the vastness of the project, variety of chip imaging styles, image
+    qualities, and chip types. In addition, well defined modularity enables
+    accelerated research into various processes involved without having to
+    re-invent the wheel.
+
+    Core modules will go through a curation process for code quality, through
+    the remaining core principles.
+
+    Contribution repositories can be made for experimental plugins and non-curated
+    code, to ease development and expand the project further than initially
+    intended.
+
+  - Standards development, adherence, and code documentation
+
+    Because of the pool of research and image processes being used in ICRE,
+    there has to be a set of standards to help the parts connect to each other, to
+    help researchers make progress, and accelerate development of modules.
+
+    For example, it would be good to make a spec for chip imaging formats and
+    delayering information [unclear what this looks like].
+
+    All parts of ICRE must be well documented, and the documentation must
+    follow code as changes are introduced.
+
+  - Reliability
+
+    Bugs in the workflow will quickly result in a loss of interest in ICRE,
+    giving marketing power to proprietary solutions. ICRE must have a thorough test
+    suite to mitigate bugs and ease introduction of new developers.
+
+  - Build on existing research
+
+    There's already a few years worth of research and FOSS code that can be
+    reused. Adopting existing code into ICRE does not only save development time,
+    we also end up contributing improvements back to existing projects.
+
+    For example, degate already implements planar silicon netlist extraction
+    and workflows to quickly assist the image recognition process. By adopting the
+    code, making the build process more reliable, and reworking it into a library
+    framework -- we can make it easier to make improvements to the core
+    functionality of the software.
+
+    Other projects, such as Dr. Zonenberg's netlist to verilog IR research,
+    are in need of image processing and netlist extraction frontends. ICRE should
+    essentially connect various research together and fill in the gaps.
+
