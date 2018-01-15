@@ -36,10 +36,10 @@ Exposed functions / structures
     9.         |-- Vibrator  0%
 
 
-4. Driver
+### 4. Driver
+Work in progress...
 
-
-5. Stepper
+### 5. Stepper
 
 A stepper mainly consists of a dictionary of parameters, defining the physical
 paramters of the stepper / body combination. The goal here is to create a
@@ -117,8 +117,4 @@ specification.
 
 Several templates are provided for various stepper motor + stage
 configurations.
-
-
-Lambdas
--------
 
